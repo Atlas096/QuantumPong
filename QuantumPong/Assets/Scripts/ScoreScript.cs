@@ -18,6 +18,12 @@ public class ScoreScript : MonoBehaviour
     //Origin to instantiate the new ball
     Vector3 ballOrigin = new Vector3(0, 7.5f, 0);
 
+    GameObject ballHandler;
+    GameObject soundManager;
+    
+    BallHandlerScript ballHandlerScript;
+    SoundScript soundScript;
+    
 
     //Boolean to check if game continues or not
     bool isGameEnd = false;
@@ -25,6 +31,10 @@ public class ScoreScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        ballHandler = GameObject.Find("BallHandlerObject");
+        ballHandlerScript = ballHandler.GetComponent<BallHandlerScript>();
+        soundManager = GameObject.Find("SoundManager");
+        soundScript = soundManager.GetComponent<SoundScript>();
     }
 
     // Update is called once per frame
@@ -41,9 +51,23 @@ public class ScoreScript : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        if(this.name == "LimitLeft")
+        {
+            print("Punto player 2");
+            ballHandlerScript.leftScore = false;
+            ballHandlerScript.rightScore = true;
+        }
+        if(this.name == "LimitRight")
+        {
+            print("Punto player 1");
+            ballHandlerScript.leftScore = true;
+            ballHandlerScript.rightScore = false;
+        }
+
         actualScore++;
         score.text = actualScore.ToString();
         Destroy(other.gameObject);
+        soundScript.scoreBeep();
         if(!isGameEnd)
         {
             Instantiate(ball, ballOrigin, Quaternion.identity);

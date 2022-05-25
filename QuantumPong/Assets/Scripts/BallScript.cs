@@ -5,39 +5,95 @@ using UnityEngine;
 public class BallScript : MonoBehaviour
 {
     //Move speed for ball
-    Vector3 movement = new Vector3(5, 3, 0);
-    //Vector3 movement;
-    //public GameObject handler;
-    //BallHandler ballHandler;
+    Vector3 movement;
+
+    float speed = 1;
+    
+    int directionX;
+    int directionY;
+
+    bool isNew = true;
+    
+    GameObject ballHandler;
+    GameObject soundManager;
+    BallHandlerScript ballHandlerScript;
+    SoundScript soundScript;
 
     // Start is called before the first frame update
     void Start()
     {
-        //movement = new Vector3(Random.Range(-5, 5), Random.Range(5, 9), 0);
-        //ballHandler = handler.GetComponent<BallHandler>();
+        ballHandler = GameObject.Find("BallHandlerObject");
+        ballHandlerScript = ballHandler.GetComponent<BallHandlerScript>();
+        soundManager = GameObject.Find("SoundManager");
+        soundScript = soundManager.GetComponent<SoundScript>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        /*if(ballHandler.isFirstGame)
+        if(ballHandlerScript.isFirstGame)
         {
-            //12 y 3 y
-            //<0>0x
-            Vector3 randomMove = new Vector3(Random.Range(-5, 5), Random.Range(3, 12), 0);
-            ballHandler.isFirstGame = false;
+            directionX = getDirectionX();
+            directionY = getDirectionY();
+            movement = new Vector3(directionX, directionY, 0);
+            ballHandlerScript.isFirstGame = false;
         }
         else
         {
-            transform.Translate(movement * Time.deltaTime);
-        }*/
-        transform.Translate(movement * Time.deltaTime);
-    }
+            if(isNew)
+            {
+                if(ballHandlerScript.rightScore)
+                {
+                    directionX = 5;
+                    directionY = getDirectionY();
 
+                    movement = new Vector3(directionX, directionY, 0);
+                }
+                if(ballHandlerScript.leftScore)
+                {                    
+                    directionX = -5;
+                    directionY = getDirectionY();
+                    movement = new Vector3(directionX, directionY, 0);
+                }
+                isNew = false;
+            }
+            
+        }
+
+        transform.Translate(movement * speed * Time.deltaTime);
+    }
+    
     bool getRandomBool()
     {
         bool value = (Random.value > 0.5f);
         return value;
+    }
+
+    int getDirectionY()
+    {
+        if(getRandomBool())
+        {
+            directionY = 5;
+        }
+        else
+        {
+            directionY = -5;
+        }  
+        return directionY;
+    }
+
+    int getDirectionX()
+    {
+        if(getRandomBool())
+        {
+            directionX = 5;
+        }
+        else
+        {
+            directionX = -5;
+        }
+        return directionX;
     }
 
     void OnCollisionEnter(Collision collision)
@@ -45,11 +101,14 @@ public class BallScript : MonoBehaviour
         if(collision.collider.name == "LimitTop" || collision.collider.name == "LimitBot")
         {
             movement.y = -movement.y;
+            soundScript.wallBeep();
         }
 
         if(collision.collider.name == "PlayerOne" || collision.collider.name == "PlayerTwo")
         {
             movement.x = -movement.x;
+            speed += 0.1f;
+            soundScript.playerBeep();
         }
     }
 

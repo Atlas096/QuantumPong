@@ -14,7 +14,7 @@ public class PlayerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(transform.position.x == -8.5f)
+        if(transform.position.x == 8.5f)
         {
             if(transform.position.y <= 11.2f)
             {
@@ -33,7 +33,7 @@ public class PlayerScript : MonoBehaviour
             }
         }
 
-        if(transform.position.x == 8.5f)
+        if(transform.position.x == -8.5f)
         {
             if(transform.position.y <= 11.2f)
             {
