@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ScoreScript : MonoBehaviour
 {
@@ -23,6 +24,9 @@ public class ScoreScript : MonoBehaviour
     
     BallHandlerScript ballHandlerScript;
     SoundScript soundScript;
+
+    static int playerOneScore = 0;
+    static int playerTwoScore = 0;
     
 
     //Boolean to check if game continues or not
@@ -46,6 +50,7 @@ public class ScoreScript : MonoBehaviour
         {
             //End transition to new scene with scoreboard and win message
             isGameEnd = true;
+            SceneManager.LoadScene (sceneName:"ScoreScreen");
         }
     }
 
@@ -53,13 +58,13 @@ public class ScoreScript : MonoBehaviour
     {
         if(this.name == "LimitLeft")
         {
-            print("Punto player 2");
+            playerTwoScore++;
             ballHandlerScript.leftScore = false;
             ballHandlerScript.rightScore = true;
         }
         if(this.name == "LimitRight")
         {
-            print("Punto player 1");
+            playerOneScore++;
             ballHandlerScript.leftScore = true;
             ballHandlerScript.rightScore = false;
         }
