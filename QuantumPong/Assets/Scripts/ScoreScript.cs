@@ -25,8 +25,8 @@ public class ScoreScript : MonoBehaviour
     BallHandlerScript ballHandlerScript;
     SoundScript soundScript;
 
-    static int playerOneScore = 0;
-    static int playerTwoScore = 0;
+    public static int playerOneScore = 0;
+    public static int playerTwoScore = 0;
     
 
     //Boolean to check if game continues or not

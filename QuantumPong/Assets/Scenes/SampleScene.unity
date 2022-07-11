@@ -1113,6 +1113,7 @@ GameObject:
   - component: {fileID: 963194228}
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
+  - component: {fileID: 963194229}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1186,6 +1187,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &963194229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e80381529ee1e04a9dcc89a9ce7ebfa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTwo: {fileID: 1731245430}
 --- !u!1 &1222438352 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5432590671875579514, guid: 482f125a0f6fed94c976ddadd4f952f6, type: 3}
@@ -1284,11 +1298,24 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1731245430}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8858ece08a3e52640bb39c6bd7b007d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1731245436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1731245430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5c1d659aa5fe384b87761bfac92a1a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ball: {fileID: 0}
 --- !u!1 &1852259954
 GameObject:
   m_ObjectHideFlags: 0
@@ -1658,6 +1685,10 @@ PrefabInstance:
       objectReference: {fileID: 435165753}
     - target: {fileID: 8366839487428744846, guid: 43af29286718302468652d01205b000a, type: 3}
       propertyPath: m_Name
+      value: Ball
+      objectReference: {fileID: 0}
+    - target: {fileID: 8366839487428744846, guid: 43af29286718302468652d01205b000a, type: 3}
+      propertyPath: m_TagString
       value: Ball
       objectReference: {fileID: 0}
     - target: {fileID: 8366839487428744881, guid: 43af29286718302468652d01205b000a, type: 3}
